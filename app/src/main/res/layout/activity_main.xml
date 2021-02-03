@@ -1,18 +1,291 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/textActionBar"
+                android:layout_width="105dp"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:backgroundTint="#FFFFFF"
+                android:src="@drawable/logo_pal" />
+
+            <TextView
+                android:id="@+id/textLaporan"
+                android:layout_width="258dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textActionBar"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="97dp"
+                android:layout_marginTop="47dp"
+                android:layout_marginEnd="56dp"
+                android:fontFamily="@font/bevan"
+                android:paddingBottom="4dp"
+                android:text="Laporan Pelanggaran"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewNip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textLaporan"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="0dp"
+                android:text="NIP" />
+
+            <EditText
+                android:id="@+id/NIP"
+                android:layout_width="265dp"
+                android:layout_height="35dp"
+                android:layout_alignBottom="@+id/textViewNip"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="-35dp"
+                android:layout_toStartOf="@+id/cekk"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:orientation="horizontal"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <Button
+                android:id="@+id/cekk"
+                android:layout_width="126dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textViewNip"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-6dp"
+                android:layout_marginEnd="7dp"
+                android:layout_weight="1"
+                android:text="Cek"
+                android:background="@drawable/custom_button"
+                tools:text="Cek" />
+
+            <TextView
+                android:id="@+id/textNama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/NIP"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="-21dp"
+                android:text="Nama" />
+
+            <EditText
+                android:id="@+id/nama"
+                android:layout_width="390dp"
+                android:layout_height="34dp"
+                android:layout_alignBottom="@+id/textNama"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="-35dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <TextView
+                android:id="@+id/textDivisi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/nama"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginBottom="-21dp"
+                android:text="Divisi/Departemen" />
+
+            <EditText
+                android:id="@+id/divisi"
+                android:layout_width="400dp"
+                android:layout_height="36dp"
+                android:layout_alignBottom="@+id/textDivisi"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="-35dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <TextView
+                android:id="@+id/textTanggal"
+                android:layout_width="397dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/divisi"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="-21dp"
+                android:text="Tanggal" />
+
+            <EditText
+                android:id="@+id/editTextDate"
+                android:layout_width="405dp"
+                android:layout_height="35dp"
+                android:layout_alignBottom="@+id/textTanggal"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="-35dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <TextView
+                android:id="@+id/textKatPel"
+                android:layout_width="399dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/editTextDate"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="-21dp"
+                android:text="Kategori Pelanggaran" />
+
+            <EditText
+                android:id="@+id/kat_pelanggaran"
+                android:layout_width="383dp"
+                android:layout_height="35dp"
+                android:layout_alignBottom="@+id/textKatPel"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="-35dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <TextView
+                android:id="@+id/Pelanggaran"
+                android:layout_width="396dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/kat_pelanggaran"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="-21dp"
+                android:text="Pelanggaran" />
+
+            <EditText
+                android:id="@+id/imageName"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignBottom="@+id/Pelanggaran"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="-35dp"
+                android:background="@drawable/custom_input"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <TextView
+                android:id="@+id/textPelStatus"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/imageName"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="-21dp"
+                android:text="Pelanggaran Status" />
+
+            <EditText
+                android:id="@+id/pelanggaran_status"
+                android:layout_width="384dp"
+                android:layout_height="36dp"
+                android:layout_alignBottom="@+id/textPelStatus"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="-37dp"
+                android:background="@drawable/custom_input"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <Button
+                android:id="@+id/buttonSelect"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/pelanggaran_status"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="-54dp"
+                android:background="@drawable/custom_button"
+
+                android:text="Select Image" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="191dp"
+                android:layout_height="133dp"
+                android:layout_alignBottom="@+id/buttonSelect"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="-133dp" />
+
+            <Button
+                android:id="@+id/buttonUpload"
+                android:layout_width="148dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/buttonSelect"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="86dp"
+                android:layout_marginEnd="37dp"
+                android:layout_marginBottom="47dp"
+                android:layout_toEndOf="@+id/imageView"
+                android:background="@drawable/custom_button"
+                android:text="Upload >>"
+                android:textColor="#FFF"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
