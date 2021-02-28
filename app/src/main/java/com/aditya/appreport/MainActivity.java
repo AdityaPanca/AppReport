@@ -19,6 +19,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -30,6 +40,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView ShowSelectedImage;
 
-    EditText imageName;
+    EditText pelanggaran;
 
     EditText nip;
 
@@ -63,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     EditText kat_pel;
 
     EditText pel_stat;
+
+    Button cek;
 
 
     Bitmap FixBitmap;
@@ -138,19 +151,24 @@ public class MainActivity extends AppCompatActivity {
 
         ShowSelectedImage = (ImageView)findViewById(R.id.imageView);
 
-        imageName=(EditText)findViewById(R.id.imageName);
+        pelanggaran = (EditText)findViewById(R.id.pelanggaran);
 
         namaPegawai=(EditText)findViewById(R.id.nama);
 
-        nip=(EditText)findViewById(R.id.NIP);
+
+        nip = (EditText)findViewById(R.id.NIP);
+
 
         dateTime = (EditText)findViewById(R.id.editTextDate);
 
         divisi=(EditText)findViewById(R.id.divisi);
 
+
         kat_pel=(EditText)findViewById(R.id.kat_pelanggaran);
 
         pel_stat = (EditText)findViewById(R.id.pelanggaran_status);
+
+        cek = (Button) findViewById(R.id.cekk);
 
 
         Calendar calendar = Calendar.getInstance();
@@ -161,9 +179,18 @@ public class MainActivity extends AppCompatActivity {
 
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+
+        cek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getData();
+            }
+        });
+
         dateTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -176,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
 
 
         byteArrayOutputStream = new ByteArrayOutputStream();
@@ -195,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                GetImageNameFromEditText = imageName.getText().toString();
+                GetImageNameFromEditText = pelanggaran.getText().toString();
 
                 GetNameFromEditText = namaPegawai.getText().toString();
 
@@ -215,11 +243,71 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{android.Manifest.permission.CAMERA},
                         5);
             }
+        }
+    }
+
+    private void getData() {
+
+        String value = nip.getText().toString().trim();
+
+        if (value.equals("")) {
+            Toast.makeText(this, "NIP TIDAK BOLEH KOSONG", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String url = Config.DATA_URL + nip.getText().toString().trim();
+
+
+
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                showJSON(response);
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+
+    private void showJSON(String response) {
+        ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray result = jsonObject.getJSONArray(Config.JSON_ARRAY);
+
+            for (int i = 0; i < result.length(); i++) {
+                JSONObject jo = result.getJSONObject(i);
+                String NAMA = jo.getString(Config.KEY_NAMA);
+                String NAMA_DIVISI = jo.getString(Config.KEY_NAMA_DIVISI);
+                namaPegawai.setText(NAMA);
+                divisi.setText(NAMA_DIVISI);
+
+                final HashMap<String, String> employees = new HashMap<>();
+                employees.put(Config.KEY_NAMA, NAMA);
+                employees.put(Config.KEY_NAMA_DIVISI, NAMA_DIVISI);
+
+                list.add(employees);
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
@@ -269,8 +357,6 @@ public class MainActivity extends AppCompatActivity {
                 Uri contentURI = data.getData();
                 try {
                     FixBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    // String path = saveImage(bitmap);
-                    //Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
                     ShowSelectedImage.setImageBitmap(FixBitmap);
                     UploadImageOnServerButton.setVisibility(View.VISIBLE);
 
@@ -284,8 +370,6 @@ public class MainActivity extends AppCompatActivity {
             FixBitmap = (Bitmap) data.getExtras().get("data");
             ShowSelectedImage.setImageBitmap(FixBitmap);
             UploadImageOnServerButton.setVisibility(View.VISIBLE);
-            //  saveImage(thumbnail);
-            //Toast.makeText(ShadiRegistrationPart5.this, "Image Saved!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -342,7 +426,9 @@ public class MainActivity extends AppCompatActivity {
 
                 HashMapParams.put(Status,GetStatusFromEditText );
 
-                String FinalData = imageProcessClass.ImageHttpRequest("http://192.168.0.109/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
+                String FinalData = imageProcessClass.ImageHttpRequest("http://192.168.0.3/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
+
+
 
                 return FinalData;
             }
@@ -429,6 +515,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {

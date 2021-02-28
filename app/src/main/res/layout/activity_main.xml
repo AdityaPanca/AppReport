@@ -7,13 +7,12 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/textActionBar"
@@ -33,9 +32,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="97dp"
+                android:layout_marginStart="89dp"
                 android:layout_marginTop="47dp"
-                android:layout_marginEnd="56dp"
+                android:layout_marginEnd="63dp"
                 android:fontFamily="@font/bevan"
                 android:paddingBottom="4dp"
                 android:text="Laporan Pelanggaran"
@@ -50,6 +49,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="0dp"
+                android:textColor="@color/black"
                 android:text="NIP" />
 
             <EditText
@@ -71,16 +71,16 @@
 
             <Button
                 android:id="@+id/cekk"
-                android:layout_width="126dp"
-                android:layout_height="wrap_content"
+                android:layout_width="127dp"
+                android:layout_height="37dp"
                 android:layout_below="@+id/textViewNip"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="-6dp"
-                android:layout_marginEnd="7dp"
+                android:layout_marginTop="-2dp"
+                android:layout_marginEnd="6dp"
                 android:layout_weight="1"
-                android:text="Cek"
                 android:background="@drawable/custom_button"
-                tools:text="Cek" />
+                android:text="Cari NIP"
+                tools:text="Cari NIP" />
 
             <TextView
                 android:id="@+id/textNama"
@@ -89,7 +89,8 @@
                 android:layout_alignBottom="@+id/NIP"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="14dp"
-                android:layout_marginBottom="-21dp"
+                android:layout_marginBottom="-35dp"
+                android:textColor="@color/black"
                 android:text="Nama" />
 
             <EditText
@@ -115,7 +116,8 @@
                 android:layout_alignBottom="@+id/nama"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="14dp"
-                android:layout_marginBottom="-21dp"
+                android:layout_marginBottom="-35dp"
+                android:textColor="@color/black"
                 android:text="Divisi/Departemen" />
 
             <EditText
@@ -143,7 +145,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="6dp"
-                android:layout_marginBottom="-21dp"
+                android:layout_marginBottom="-35dp"
+                android:textColor="@color/black"
                 android:text="Tanggal" />
 
             <EditText
@@ -171,7 +174,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="-21dp"
+                android:layout_marginBottom="-35dp"
+                android:textColor="@color/black"
                 android:text="Kategori Pelanggaran" />
 
             <EditText
@@ -191,7 +195,7 @@
                 android:paddingEnd="12dp" />
 
             <TextView
-                android:id="@+id/Pelanggaran"
+                android:id="@+id/textPelanggaran"
                 android:layout_width="396dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/kat_pelanggaran"
@@ -200,14 +204,15 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="6dp"
-                android:layout_marginBottom="-21dp"
+                android:layout_marginBottom="-35dp"
+                android:textColor="@color/black"
                 android:text="Pelanggaran" />
 
             <EditText
-                android:id="@+id/imageName"
+                android:id="@+id/pelanggaran"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_alignBottom="@+id/Pelanggaran"
+                android:layout_alignBottom="@+id/textPelanggaran"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="7dp"
@@ -221,12 +226,13 @@
                 android:id="@+id/textPelStatus"
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imageName"
+                android:layout_alignBottom="@+id/pelanggaran"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="14dp"
                 android:layout_marginEnd="3dp"
-                android:layout_marginBottom="-21dp"
+                android:layout_marginBottom="-35dp"
+                android:textColor="@color/black"
                 android:text="Pelanggaran Status" />
 
             <EditText
@@ -255,36 +261,37 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="6dp"
-                android:layout_marginBottom="-54dp"
+                android:layout_marginBottom="-70dp"
                 android:background="@drawable/custom_button"
 
                 android:text="Select Image" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="191dp"
-                android:layout_height="133dp"
+                android:layout_width="199dp"
+                android:layout_height="160dp"
                 android:layout_alignBottom="@+id/buttonSelect"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginBottom="-133dp" />
+                android:layout_marginBottom="-177dp" />
 
             <Button
                 android:id="@+id/buttonUpload"
-                android:layout_width="148dp"
-                android:layout_height="0dp"
+                android:layout_width="136dp"
+                android:layout_height="64dp"
                 android:layout_below="@+id/buttonSelect"
                 android:layout_alignBottom="@+id/imageView"
                 android:layout_alignParentEnd="true"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="86dp"
-                android:layout_marginEnd="37dp"
-                android:layout_marginBottom="47dp"
+                android:layout_marginStart="43dp"
+                android:layout_marginTop="130dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginBottom="52dp"
                 android:layout_toEndOf="@+id/imageView"
                 android:background="@drawable/custom_button"
                 android:text="Upload >>"
                 android:textColor="#FFF"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                />
 
         </RelativeLayout>
     </ScrollView>
