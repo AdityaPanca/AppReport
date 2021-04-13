@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +58,9 @@ import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button GetImageFromGalleryButton, UploadImageOnServerButton;
+    Button GetImageFromGalleryButton;
+
+    Button UploadImageOnServerButton;
 
     ImageView ShowSelectedImage;
 
@@ -240,6 +243,8 @@ public class MainActivity extends AppCompatActivity {
 
                 UploadImageToServer();
 
+                Intent exit = new Intent(getApplicationContext(),ExitActivity.class);
+                startActivity(exit);
             }
         });
 
@@ -257,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         String value = nip.getText().toString().trim();
 
         if (value.equals("")) {
-            Toast.makeText(this, "NIP TIDAK BOLEH KOSONG", Toast.LENGTH_LONG).show();
+            StyleableToast.makeText(this, "NIP TIDAK BOLEH KOSONG", R.style.gagal).show();
             return;
         }
 
@@ -362,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(MainActivity.this, "Failed!", R.style.gagal).show();
                 }
             }
 
@@ -426,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
 
                 HashMapParams.put(Status,GetStatusFromEditText );
 
-                String FinalData = imageProcessClass.ImageHttpRequest("http://192.168.0.3/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
+                String FinalData = imageProcessClass.ImageHttpRequest("http://192.168.0.4/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
 
 
 
